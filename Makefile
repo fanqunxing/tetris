@@ -1,8 +1,11 @@
 CC = gcc
 CFLAGS = -Wall -O2
+SRCS = $(wildcard src/*.c)
+OBJS = $(SRCS:.c=.o)
+TARGET = tetris
 
-tetris: src/tetris.c
-	$(CC) $(CFLAGS) src/tetris.c -o tetris
+$(TARGET): $(SRCS)
+	$(CC) $(CFLAGS) $(SRCS) -o $(TARGET)
 
 clean:
-	rm -f tetris
+	rm -f $(TARGET) src/*.o
