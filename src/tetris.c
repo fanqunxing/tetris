@@ -36,9 +36,9 @@ int main () {
   Canvas* canvas = NULL;
   canvas_create(&canvas);
   canvas_init(canvas, 20, 10, 1);
+  canvas_destroy(&canvas);
   canvas_clear(canvas);
   Point points[] = {{1, 1}, {2, 2}, {3, 3}};
   canvas_draw_points(canvas, points, sizeof(points) / sizeof(points[0]));
-  canvas_destroy(canvas);
   return 0;
 }

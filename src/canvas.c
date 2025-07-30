@@ -1,21 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "canvas.h"
 
 int canvas_create(Canvas** canvas) {
-  printf("Creating canvas...\n");
-  printf("Address of canvas: %p\n", (void *)*canvas);
-  Canvas new_canvas = {0, 0, 0};
-  *canvas = &new_canvas;
-  printf("Creating canvas...\n");
-  printf("Address of canvas: %p\n", (void *)*canvas);
+  *canvas = malloc(sizeof(Canvas));
+  if (*canvas == NULL) {
+    return -1;
+  }
+  memset(*canvas, 0, sizeof(Canvas));
+  printf("canvas_create: %p\n", (void *)*canvas);
   return 0;
 };
 
-int canvas_destroy(Canvas* canvas) {
-  printf("Destroying canvas...\n");
-  printf("Address of canvas: %p\n", (void *)canvas);
+int canvas_destroy(Canvas** canvas) {
+  if (canvas == NULL || *canvas == NULL) {
+    return 0;
+  }
+  free(*canvas);
+  *canvas = NULL;
+  printf("canvas_destroy: %p\n", (void *)*canvas);
   return 0;
 };
 
