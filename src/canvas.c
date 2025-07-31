@@ -24,20 +24,51 @@ int canvas_destroy(Canvas** canvas) {
   return 0;
 };
 
-int canvas_init(const Canvas* canvas, int width, int height, int border_width) {
-  printf("-----canvas_init----- \n");
-  printf("Address of canvas: %p\n", (void *)canvas);
+int canvas_draw_outline(Canvas* canvas) {
+  int width = canvas->width;
+  int height = canvas->height;
+  int border_width = canvas->border_width;
+  // Point* points = canvas->points;
+  // for (int i = 0; i < num_points; i++) {
+  //   printf("Drawing point at (%d, %d)\n", points[i].x, points[i].y);
+  // }
+  
+  width += 2 * border_width;
+  height += 2 * border_width;
+  for (int i = 0; i < height; i++) {
+    for (int j = 0; j < width; j++) {
+      if (i < border_width || i >= height - border_width ||
+          j < border_width || j >= width - border_width)
+        printf("#");
+      else
+        printf(" ");
+    }
+    printf("\n");
+  }
   return 0;
 };
 
-int canvas_clear(const Canvas* canvas){
+int canvas_init(Canvas* canvas, int width, int height, int border_width) {
+  printf("Address of canvas: %p\n", (void *)canvas);
+  canvas->width = width;
+  canvas->height = height;
+  canvas->border_width = border_width;
+  canvas_draw_outline(canvas);
+  return 0;
+};
+
+int canvas_clear(Canvas* canvas){
   printf("Clearing canvas...\n");
-  printf("Address of canvas: %p\n", (void *)canvas);
+  canvas->points = NULL;
   return 0;
 };
 
-int canvas_draw_points(const Canvas* canvas, Point* points, int num_points) {
-  printf("Drawing points on canvas...\n");
-  printf("Address of canvas: %p\n", (void *)canvas);
+int canvas_draw_points(Canvas* canvas, Point* points, int num_points) {
+  printf("canvas_draw_points: %p\n", (void *)canvas);
+  canvas->points = malloc(num_points * sizeof(Point));
+  canvas_draw_outline(canvas);
+  for (int i = 0; i < num_points; i++) {
+    printf("Drawing point at (%d, %d)\n", points[i].x, points[i].y);
+  }
   return 0;
 };
