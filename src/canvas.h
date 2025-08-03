@@ -20,3 +20,5 @@ int canvas_destroy(Canvas** canvas);
 int canvas_init(Canvas* canvas, int width, int height, int border_width);
 int canvas_clear(Canvas* canvas);
 int canvas_add_points(Canvas* canvas, Point* points, int num_points);
+int canvas_remove_ponits(Canvas* canvas, Point* points, int num_points);
+int canvas_draw(Canvas* canvas);

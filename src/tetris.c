@@ -1,26 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
-#include "canvas.h"
-
-// int clear_screen() {
-//   system("clear");
-//   return 0;
-// }
-
-// int draw_shape() {
-//   printf("Drawing shape...\n");
-//   // Placeholder for drawing logic
-//   return 0;
-// }
+#include "tetris.h"
 
 int main () {
+  setvbuf(stdout, NULL, _IONBF, 0);
   Canvas* canvas = NULL;
   canvas_create(&canvas);
   canvas_init(canvas, 20, 10, 1);
-  // canvas_destroy(&canvas);
-  // canvas_clear(canvas);
-  Point points[] = {{1, 1}, {1, 2}, {2, 1}};
-  canvas_add_points(canvas, points, sizeof(points) / sizeof(points[0]));
+  // Point points[] = shape_L;
+  int n = 1;
+  while(1) {
+    usleep(100000);
+
+    canvas_add_points(canvas, shapes[n%7], 4);
+
+    canvas_draw(canvas);
+
+    canvas_remove_ponits(canvas, shapes[n%7], 4);
+
+    n ++;
+  }
   return 0;
 }
