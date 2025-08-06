@@ -24,7 +24,7 @@ typedef struct Shape
 {
   enum ShapeType type;
   enum ShapeRotation rotation;
-  int points[5][2]; // Max 5 points per shape
+  int points[5][2];
 } Shape;
 
 int shape_create(Shape **shape, enum ShapeType type, enum ShapeRotation rotation);
