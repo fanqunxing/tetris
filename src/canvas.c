@@ -66,9 +66,14 @@ int canvas_init(Canvas *canvas, int width, int height, int border_width)
   canvas->width = width;
   canvas->height = height;
   canvas->border_width = border_width;
-  for (int i = 0; i < height + 2 * border_width; i++)
+  int rows = height + 2 * border_width;
+  canvas->pixels = (int **)malloc(rows * sizeof(int *));
+
+  for (int i = 0; i < rows; i++)
   {
-    for (int j = 0; j < width + 2 * border_width; j++)
+    int cols = width + 2 * border_width;
+    canvas->pixels[i] = (int *)malloc(cols * sizeof(int));
+    for (int j = 0; j < cols; j++)
     {
       if (i < border_width || i >= height + border_width ||
           j < border_width || j >= width + border_width)
@@ -116,4 +121,9 @@ int canvas_remove_ponits(Canvas *canvas, int points[5][2], int num_points)
     canvas->pixels[x][y] = 0;
   }
   return 0;
-};
+}
+
+int canvas_get_pixels(Canvas *canvas, int **pixels, int *x_size, int *y_size)
+{
+  return 0;
+}
