@@ -18,7 +18,7 @@ typedef struct
 } Canvas;
 
 int canvas_create(Canvas **canvas);
-int canvas_destroy(Canvas **canvas);
+int canvas_destroy(Canvas *canvas);
 int canvas_init(Canvas *canvas, int width, int height, int border_width);
 int canvas_clear(Canvas *canvas);
 int canvas_add_points(Canvas *canvas, int points[5][2], int num_points);

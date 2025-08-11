@@ -17,15 +17,13 @@ int canvas_create(Canvas **canvas)
   return 0;
 };
 
-int canvas_destroy(Canvas **canvas)
+int canvas_destroy(Canvas *canvas)
 {
-  if (canvas == NULL || *canvas == NULL)
+  if (canvas == NULL)
   {
     return 0;
   }
-  free(*canvas);
-  *canvas = NULL;
-  // printf("canvas_destroy: %p\n", (void *)*canvas);
+  free(canvas);
   return 0;
 };
 
