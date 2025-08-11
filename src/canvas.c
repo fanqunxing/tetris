@@ -123,7 +123,7 @@ int canvas_remove_ponits(Canvas *canvas, int points[5][2], int num_points)
 
 int canvas_get_pixels(Canvas *canvas, int **pixels, int *x_size, int *y_size)
 {
-  printf("x = %d y = %d \n", canvas->width, canvas->height);
+  // printf("x = %d y = %d \n", canvas->width, canvas->height);
   *x_size = canvas->width;
   *y_size = canvas->height;
   return 0;
