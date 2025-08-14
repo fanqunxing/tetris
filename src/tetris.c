@@ -13,21 +13,26 @@ int main()
   Shape *shape = NULL;
   shape_create(&shape, SHAPE_J, ROTATION_0);
 
-  int **pixels = NULL;
-  int x_size = 0;
-  int y_size = 0;
-  canvas_get_pixels(canvas, pixels, &x_size, &y_size);
-  printf("x1 = %d y1 = %d \n", x_size, y_size);
+  int w_size = 0;
+  int h_size = 0;
+  canvas_get_pixels(canvas, NULL, &w_size, &h_size);
+  printf("x1 = %d y1 = %d \n", w_size, h_size);
 
-  for (int i = 0; i < y_size; i++)
+  int **pixels = NULL;
+  pixels = (int **)malloc(h_size * sizeof(int *));
+  for (int i = 0; i < h_size; i++)
   {
-    printf("===== %d \n", x_size);
-    for (int j = 0; j < x_size; j++)
+    pixels[i] = (int *)malloc(w_size * sizeof(int));
+  }
+  canvas_get_pixels(canvas, &pixels, &w_size, &h_size);
+
+  for (int i = 0; i < h_size; i++)
+  {
+    for (int j = 0; j < w_size; j++)
     {
-      printf("x=%d,y=%d \n", i, j);
+      printf("i=%d j=%d v=%d \n", i, j, pixels[i][j]);
     }
   }
-
   while (0)
   {
     usleep(100000);

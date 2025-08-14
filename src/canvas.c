@@ -121,10 +121,19 @@ int canvas_remove_ponits(Canvas *canvas, int points[5][2], int num_points)
   return 0;
 }
 
-int canvas_get_pixels(Canvas *canvas, int **pixels, int *x_size, int *y_size)
+int canvas_get_pixels(Canvas *canvas, int ***pixels, int *x_size, int *y_size)
 {
-  // printf("x = %d y = %d \n", canvas->width, canvas->height);
   *x_size = canvas->width;
   *y_size = canvas->height;
+  if (pixels != NULL && *pixels != NULL)
+  {
+    for (int i = 0; i < canvas->height; i++)
+    {
+      for (int j = 0; j < canvas->width; j++)
+      {
+        (*pixels)[i][j] = canvas->pixels[i][j];
+      }
+    }
+  }
   return 0;
 }
